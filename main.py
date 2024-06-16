@@ -5,18 +5,15 @@ from dqn import *
 from pruning_env import *
 from evaluate import *
 
-# Load dữ liệu
+
 train_loader, test_loader = get_data_loaders()
 
-# Khởi tạo và huấn luyện mô hình
 model = SimpleNN()
 model = train_model(model, train_loader)
 
-# Đánh giá mô hình trước khi pruning
 print("Model evaluation before pruning:")
 model_evaluation(model, train_loader, test_loader)
 
-# Định nghĩa môi trường pruning và các hàm hỗ trợ
 state_dim = 1  # Độ chính xác ban đầu của mô hình
 action_dim = 1  # Chúng ta có một hành động là pruning
 dqn_model = DQN(state_dim, action_dim)
